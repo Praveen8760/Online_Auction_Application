@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="icon" href="/image/brand_icon.svg">
+    <link rel="stylesheet" href="/css/output.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+</head>
+
+<body class="bg-white-base">
+    <nav class="bg-white">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/home" class="flex items-center space-x-9 rtl:space-x-reverse">
+            <img src="image/brand_icon.svg" class="h-14 w-14 lg:w-[40px] lg:h-[40px]" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap font-Custom">Bidding</span>
+        </a>
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" class="flex text-sm rounded-full md:me-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <img class="w-8 h-8 rounded-full" src="image/user.svg" alt="user photo">
+            </button>
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden my-4 left-10 text-base list-none bg-white divide-y rounded-lg shadow divide-primary" id="user-dropdown">
+            <div class="px-4 py-3">
+                <span class="block text-mobile-p lg:text-destop-p font-semibold text-dark"><%= user.fullname %></span>
+                <span class="block text-sm  text-gray-500 truncate"><%= user.email %></span>
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                <a href="/profile" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Profile</a>
+                </li>
+                <li>
+                <a href="/addProduct" class="block px-4 py-2 text-mobile-p text-primary hover:bg-gray-100 font-Custom">Create Auction</a>
+                </li>
+                <li>
+                    <a href="/orders" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Orders</a>
+                </li>
+
+                <li>
+                    <a href="/logout" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="grid grid-cols-12 h-dvh w-full">
+        <section class="lg:mx-3 col-span-full lg:col-span-12 px-4 lg:px-8">
+            <!-- title -->
+             <div>
+                <h1 class="font-Custom text-mobile-h1 lg:text-destop-h1">Create Auction</h1>
+                <span class="font-Custom text-dark-light text-mobile-h4 lg:text-destop-h4">Add Product to create a Auction</span>
+             </div>
+
+             <form method="post" action="/addProduct" enctype="multipart/form-data" class="mt-3 col-span-12 flex flex-col gap-4 lg:col-span-8 px-4 py-4 lg:px-8 max-h-min bg-white rounded-desktop-form">
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-12">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">Auction Name</label>
+                        <input type="text" name="auctionName" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">Start Time</label>
+                        <input type="datetime-local" name="startTime" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
+                    </div>
+
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">End Time</label>
+                        <input type="datetime-local" name="endTime" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="startingBid">Starting Bid</label>
+                        <input type="number" inputmode="numeric" name="startingBid" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000" required>
+                    </div>
+
+                    <div class="flex flex-col gap-2 col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="bidIncrement">Bid Increment:</label>
+                        <input type="number" name="bidIncrement" value="1000" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000">
+                    </div>
+                </div>
+
+
+                <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="description">Description:</label>
+                <textarea type="text" name="description" class="h-40 text-start font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" required placeholder="Enter Auction Description"></textarea>
+                
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-7">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="category">Category</label>
+                        <select class="form-select max-h-max font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" id="category" name="category">
+                            <option value="">Select Category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="HomeAppliances">Home Appliances</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Automobiles">Automobiles</option>
+                            <option value="Art_Collectibles">Art & Collectibles</option>
+                            <option value="RealEstate">Real Estate</option>
+                            <option value="SportsEquipment">Sports Equipment</option>
+                            <option value="Jewelry_Watches">Jewelry & Watches</option>
+                            <option value="ToysGames">Toys & Games</option>
+                            <option value="Collectibles">Collectibles</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col gap-2 col-span-12 lg:col-span-5">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="productImage">Product Image</label>
+                        <input required type="file" name="image" multiple class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000">
+                    </div>
+                </div>
+
+                <button type="submit" class="font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p">Create a Auction</button>
+
+             </form>
+        </section>
+    </main>
+
+
+
+
+
+
+
+    <script>
+        const socket = io();
+        socket.on('newProduct', (data) => {
+            alert(`New product submitted: ${data.productName}. Waiting for admin approval.`);
+        });
+    </script>
+
+</body>
+</html>

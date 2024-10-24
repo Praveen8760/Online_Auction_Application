@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bids</title>
+    <link rel="icon" href="/image/brand_icon.svg">
+    <link rel="stylesheet" href="/css/output.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+</head>
+<body class="bg-gray-100 font-Custom">
+
+    <nav class="bg-white">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/home" class="flex items-center space-x-9 rtl:space-x-reverse">
+            <img src="image/brand_icon.svg" class="h-14 w-14 lg:w-[40px] lg:h-[40px]" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap font-Custom">Bidding</span>
+        </a>
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" class="flex text-sm rounded-full md:me-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <img class="w-8 h-8 rounded-full" src="image/user.svg" alt="user photo">
+            </button>
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden my-4 left-10 text-base list-none bg-white divide-y rounded-lg shadow divide-primary" id="user-dropdown">
+            <div class="px-4 py-3">
+                <span class="block text-mobile-p lg:text-destop-p font-semibold text-dark"><%= user.fullname %></span>
+                <span class="block text-sm  text-gray-500 truncate"><%= user.email %></span>
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                <a href="/profile" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Profile</a>
+                </li>
+                <li>
+                <a href="/addProduct" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Create Auction</a>
+                </li>
+                <li>
+                <a href="/myBids" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Watch List</a>
+                </li>
+                <li>
+                <a href="/logout" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <div class="container mx-auto p-8">
+            <h1 class="text-mobile-h2 text-dark font-semibold mb-6 lg:text-destop-h2">Your Bids</h1>
+            <% if (products && products.length > 0) { %>
+                <% products.forEach(product => { %>
+                    <article class="bg-white rounded-desktop-form shadow-md p-6 mb-8">
+                        <h2 class="text-mobile-h3 font-bold text-dark mb-4 lg:text-destop-h3 capitalize"><%= product.auction.title %></h2>  <!-- Change to product.auction.title -->
+    
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-lg">Starting Price: ₹<%= product.auction.starting_bid %></p>
+                                <p class="text-lg">Current Highest Bid: ₹<%= product.auction.current_bid %></p>  <!-- Change to product.auction.current_bid -->
+                            </div>
+                            <div>
+                                <p class="text-lg">Auction Status: 
+                                    <% if (product.auction.status === 'closed') { %>
+                                        <span class="text-red-500 font-semibold">Closed</span>
+                                    <% } else { %>
+                                        <span class="text-green-500 font-semibold">Open</span>
+                                    <% } %>
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="mt-6">
+                            <h3 class="text-xl font-bold mb-4">Your Bids</h3>
+                            
+                            <table class="table-auto w-full mb-4">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-2">Bid Amount</th>
+                                        <th class="px-4 py-2">Date</th>
+                                        <th class="px-4 py-2">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% product.bids.forEach(bid => { %>
+                                        <tr class="bg-gray-100 hover:bg-gray-200">
+                                            <td class="border px-4 py-2">₹<%= bid.amount %></td>
+                                            <td class="border px-4 py-2"><%= new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(bid.timestamp) %></td>
+                                            <td class="border px-4 py-2">
+                                                <% if (bid.user_id) { %>
+                                                    <% const bidUserId = bid.user_id.toString(); %> <!-- Convert to string for comparison -->
+                                                    <% if (bidUserId === userId.toString()) { %> <!-- Compare as strings -->
+                                                        <% if (product.auction.status === 'closed' && bid.status === 'winning') { %>
+                                                            <span class="text-green-500 font-semibold">Winning Bid</span>
+                                                        <% } else if (bid.status === 'outbid') { %>
+                                                            <span class="text-red-500">Outbid</span>
+                                                        <% } else if (bid.status === 'active') { %>
+                                                            <span class="text-blue-500">Active</span>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } else { %>
+                                                    <span class="text-gray-500">Unknown User</span>
+                                                <% } %>
+                                            </td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>                                
+                            </table>
+                        </div>
+    
+                        <% if (product.auction.status === 'closed' && product.winning_bidder.equals(userId)) { %>
+                            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+                                <p class="font-bold">Congratulations!</p>
+                                <p>You have won the auction for this product.</p>
+                            </div>
+                        <% } %>
+                    </article>
+                <% }); %>
+            <% } else { %>
+                <p class="text-xl">You haven't placed any bids yet.</p>
+            <% } %>
+        </div>
+
+</body>
+</html>

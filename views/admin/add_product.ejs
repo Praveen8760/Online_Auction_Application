@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/output.css">
+    
+    <link rel="icon" href="/image/brand_icon.svg">
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+
+<body class="bg-white-base">
+    <main class="grid grid-cols-12 h-dvh">
+        <aside class="col-span-3 lg:h-screen lg:col-span-2">
+            <div @click.away="open = false" class="flex min-w-max h-auto lg:h-dvh flex-col text-gray-700 lg:rounded-r-[40px] bg-white flex-shrink-0" x-data="{ open: false }">
+                <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
+                    <div class="flex justify-center gap-2 items-center">
+                        <img src="/image/brand_icon.svg" class="w-14 h-14 lg:w-[40px] lg:h-[40px]">
+                        <h1 class="text-mobile-h3 text-dark lg:text-destop-h3 font-Custom">Bidding</h1>
+                    </div>
+                <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                    <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                </div>
+                <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block border-primary px-4 pb-4 md:pb-0 md:overflow-y-auto">
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/dashboard">
+                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Dashboard</p>
+                </a>
+
+
+
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/product">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p class="text-primary">Add Products</p>
+                </a>
+
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="productRequest">
+                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Products Request</p>
+                </a>
+
+                <hr class="border-t-2 rounded-lg border-border-color my-4">
+                <!-- logout -->
+                <form method="post" action="/admin/logout" class="w-full h-auto flex justify-center">
+                    <button type="submit" class="w-full py-[10px] rounded-desktop-form bg-primary flex place-content-center gap-[20px]">
+                        <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" class="text-white fill-current w-6 h-6">
+                            <path d="M8 8H32C34.2 8 36 6.2 36 4C36 1.8 34.2 0 32 0H8C3.6 0 0 3.6 0 8V64C0 68.4 3.6 72 8 72H32C34.2 72 36 70.2 36 68C36 65.8 34.2 64 32 64H8V8Z" fill="#FFFFFF"/>
+                            <path d="M70.6 34.6L59.44 23.44C58.16 22.16 56 23.04 56 24.84V32H28C25.8 32 24 33.8 24 36C24 38.2 25.8 40 28 40H56V47.16C56 48.96 58.16 49.84 59.4 48.56L70.56 37.4C71.36 36.64 71.36 35.36 70.6 34.6Z" fill="#FFFFFF"/>
+                        </svg>
+                        <span class="font-Custom text-white text-mobile-p lg:text-destop-p">Logout</span>
+                    </button>
+                </form>
+                </nav>
+            </div>
+
+        </aside>
+        
+
+        <section class="lg:mx-3 col-span-full lg:col-span-10 px-4 lg:px-8 overflow-y-auto scroll">
+            <!-- title -->
+             <div>
+                <h1 class="font-Custom text-mobile-h1 lg:text-destop-h1">Create Auction</h1>
+                <span class="font-Custom text-dark-light text-mobile-h4 lg:text-destop-h4">Add Product to create a Auction</span>
+             </div>
+
+             <form method="post" action="/admin/product" enctype="multipart/form-data" class="mt-3 col-span-12 flex flex-col gap-4 lg:col-span-8 px-4 py-4 lg:px-8 max-h-min bg-white rounded-desktop-form">
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-12">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">Auction Name</label>
+                        <input type="text" name="auctionName" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">Start Time</label>
+                        <input type="datetime-local" name="startTime" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
+                    </div>
+
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">End Time</label>
+                        <input type="datetime-local" name="endTime" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="startingBid">Starting Bid</label>
+                        <input type="number" inputmode="numeric" name="startingBid" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000" required>
+                    </div>
+
+                    <div class="flex flex-col gap-2 col-span-12 lg:col-span-6">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="bidIncrement">Bid Increment:</label>
+                        <input type="number" name="bidIncrement" value="1000" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000">
+                    </div>
+                </div>
+
+
+                <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="description">Description:</label>
+                <textarea type="text" name="description" class="h-40 text-start font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" required placeholder="Enter Auction Description"></textarea>
+                
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-7">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="category">Category</label>
+                        <select class="form-select max-h-max font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" id="category" name="category">
+                            <option value="">Select Category</option>
+                            <!-- Categories would be dynamically generated from the database -->
+                            <option value="Electronics">Electronics</option>
+                            <option value="HomeAppliances">Home Appliances</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Automobiles">Automobiles</option>
+                            <option value="Art_Collectibles">Art & Collectibles</option>
+                            <option value="RealEstate">Real Estate</option>
+                            <option value="SportsEquipment">Sports Equipment</option>
+                            <option value="Jewelry_Watches">Jewelry & Watches</option>
+                            <option value="ToysGames">Toys & Games</option>
+                            <option value="Collectibles">Collectibles</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col gap-2 col-span-12 lg:col-span-5">
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="productImage">Product Image</label>
+                        <input required type="file" name="image" multiple class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000">
+                    </div>
+                </div>
+
+                <button type="submit" class="font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p">Create a Auction</button>
+
+             </form>
+        </section>
+    </main>
+
+</body>
+</html>

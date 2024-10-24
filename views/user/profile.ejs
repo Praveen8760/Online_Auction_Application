@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" href="/image/brand_icon.svg">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+</head>
+<body class="bg-white-base">
+
+    <!-- navbar -->
+    <nav class="bg-white">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/home" class="flex items-center space-x-9 rtl:space-x-reverse">
+            <img src="image/brand_icon.svg" class="h-14 w-14 lg:w-[40px] lg:h-[40px]" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap font-Custom">Bidding</span>
+        </a>
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" class="flex text-sm rounded-full md:me-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <img class="w-8 h-8 rounded-full" src="image/user.svg" alt="user photo">
+            </button>
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden my-4 left-10 text-base list-none bg-white divide-y rounded-lg shadow divide-primary" id="user-dropdown">
+            <div class="px-4 py-3">
+                <span class="block text-mobile-p lg:text-destop-p font-semibold text-dark"><%= user.fullname %></span>
+                <span class="block text-sm  text-gray-500 truncate"><%= user.email %></span>
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                <a href="/profile" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Profile</a>
+                </li>
+                <li>
+                <a href="/addProduct" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Create Auction</a>
+                </li>
+                <li>
+                    <a href="/orders" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Orders</a>
+                </li>
+                <li>
+                <a href="/logout" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-10">
+        <h1 class="text-mobile-h2 font-semibold font-Custom mb-6 text-center lg:text-destop-h2">User Profile</h1>
+        
+        <!-- Profile Image Section -->
+        <div class="flex flex-col font-Custom items-center mb-8">
+            <img src="/image/userAvater.png" alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-gray-300 mb-2">
+            <h2 class="text-mobile-h3 font-medium lg:text-destop-h3 capitalize"><%= user.fullname %></h2>
+            <p class="text-gray-500 text-mobile-p lg:text-destop-h4"><%= user.email %></p>
+        </div>
+
+        <form action="/profile" method="post" class="font-Custom grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- User Information Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-mobile-h2 font-semibold text-dark mb-4 lg:text-destop-h2">User Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fullname" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" value="<%= user.fullname %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                    </div>
+                    <div>
+                        <label for="email" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Email:</label>
+                        <input type="email" id="email" name="email" value="<%= user.email %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div>
+                        <label for="current_password" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Current Password:</label>
+                        <input type="password" id="current_password" name="current_password" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                    </div>
+                    <div>
+                        <label for="new_password" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">New Password:</label>
+                        <input type="password" id="new_password" name="new_password"  class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label for="confirm_new_password" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Confirm New Password:</label>
+                    <input type="password" id="confirm_new_password" name="confirm_new_password" class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                </div>
+            </div>
+            
+            <!-- Payment Method Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md font-Custom">
+                <h2 class="text-mobile-h2 lg:text-destop-h2 font-semibold mb-5">Payment Method</h2>
+                <div class="grid grid-cols-1 gap-6">
+                    <div>
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Card Number:</label>
+                        <input type="text" name="payment_method[card_number]" value="<%= user.payment_methods[0].card_number %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Expiry Date:</label>
+                            <input type="text" name="payment_method[card_expiry]" value="<%= user.payment_methods[0].card_expiry %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        </div>
+                        <div>
+                            <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">CVC:</label>
+                            <input type="password" name="payment_method[card_cvc]" value="<%= user.payment_methods[0].card_cvc %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Cardholder Name:</label>
+                        <input type="text" name="payment_method[cardholder_name]" value="<%= user.fullname %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center w-full mt-6 mb-5">
+                <button type="submit" class="min-w-max px-[15px] font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p transition duration-200">Update Profile</button>
+            </div>
+        </form>
+        
+    </div>
+
+    
+</body>
+</html>

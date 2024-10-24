@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You for Registering</title>
+  <style>
+    /* General styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: #333333;
+      text-align: center;
+    }
+
+    p {
+      color: #555555;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #aaaaaa;
+      margin-top: 20px;
+    }
+    .navbar {
+      background-color: #333;
+      padding: 10px 0;
+      text-align: center;
+      border-radius: 12px;
+    }
+
+
+    /* Responsive design */
+    @media only screen and (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f4f4; padding: 20px;">
+    <tr>
+      <td>
+        <div class="container">
+            <div class="navbar">
+                <h1 style="color: #343EE5">Bidding</h1>
+            </div>
+          <h1>Thank You for Registering!</h1>
+          <p>Hello <strong style="text-transform: capitalize;"><%= userName %></strong>,</p>
+          <p>We're thrilled to have you onboard! Your account has been successfully registered. You can now explore our platform and participate in upcoming auctions.</p>
+          <p>If you have any questions, feel free to contact our support team.</p>
+          <p>Thank you,<br>The Bidding Team</p>
+        </div>
+
+        <div class="footer">
+          <p>&copy; 2024 Bidding Platform. All rights reserved.</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

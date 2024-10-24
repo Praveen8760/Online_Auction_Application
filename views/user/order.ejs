@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders</title>
+    <link rel="icon" href="/image/brand_icon.svg">
+    <link rel="stylesheet" href="/css/output.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+</head>
+<body class="bg-white-base font-Custom">
+    <nav class="bg-white">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/home" class="flex items-center space-x-9 rtl:space-x-reverse">
+            <img src="image/brand_icon.svg" class="h-14 w-14 lg:w-[40px] lg:h-[40px]" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap font-Custom">Bidding</span>
+        </a>
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" class="flex text-sm rounded-full md:me-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <img class="w-8 h-8 rounded-full" src="image/user.svg" alt="user photo">
+            </button>
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden my-4 left-10 text-base list-none bg-white divide-y rounded-lg shadow divide-primary" id="user-dropdown">
+            <div class="px-4 py-3">
+                <span class="block text-mobile-p lg:text-destop-p font-semibold text-dark"><%= user.fullname %></span>
+                <span class="block text-sm  text-gray-500 truncate"><%= user.email %></span>
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                <a href="/profile" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Profile</a>
+                </li>
+                <li>
+                <a href="/addProduct" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Create Auction</a>
+                </li>
+                <li>
+                    <a href="/orders" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Orders</a>
+                </li>
+                <li>
+                <a href="/logout" class="block px-4 py-2 text-mobile-p text-gray-800 hover:bg-gray-100 font-Custom">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        <h1 class="text-mobile-h1 font-Custom lg:text-destop-h1 mb-4">Your Orders</h1>
+
+        <% if (auctions.length === 0) { %>
+            <div class="bg-white p-6 rounded shadow">
+                <p class="text-gray-600">You have no orders yet.</p>
+            </div>
+        <% } else { %>
+            <ul class="space-y-4">
+                <% auctions.forEach(order => { %>
+                    <li class="bg-white p-4 rounded-desktop-form shadow flex justify-between items-center">
+                        <div class="mt-4">
+                            <% if (order.images && order.images.length > 0) { %>
+                                <img src="<%= order.images[0] %>" alt="<%= order.title %>" class="w-full h-48 object-cover rounded">
+                            <% } else { %>
+                                <div class="bg-gray-200 w-full h-48 rounded flex items-center justify-center">
+                                    <span class="text-gray-500">No Image Available</span>
+                                </div>
+                            <% } %>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <h2 class="text-lg font-bold">Product Name:<%= order.title %></h2>
+                            <p class="text-gray-600">Product Description:<%= order.description %></p>
+                            <p class="text-gray-700 mt-2">
+                                Winning Bid: <span class="font-semibold">$<%= order.current_bid.toFixed(2) %></span>
+                            </p>
+                            <p class="text-gray-700">
+                                Auction Status: <span class="font-semibold"><%= order.status %></span>
+                            </p>
+                        </div>
+
+
+                        
+                        <div class="flex flex-col items-center">
+                            <% if (order.payment_status === 'pending') { %>
+                                <a href="/pay/<%= order._id %>" class="bg-primary rounded-desktop-form text-white py-2 px-4 mt-4 inline-block">
+                                    Complete Payment
+                                </a>
+                                <p class="text-red-500 mt-2">Please complete payment within 48 hours.</p>
+                            <% } else { %>
+                                <p class="text-green-500 mt-2">Payment Completed</p>
+                            <% } %>
+                        </div>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+</body>
+</html>

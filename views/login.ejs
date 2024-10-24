@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Back</title>
+    
+    <!-- favicon -->
+    <link rel="icon" href="/image/brand_icon.svg">
+
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="bg-white-base">
+    <main class="grid grid-cols-1 h-dvh mt-3 lg:grid-cols-2 lg:mt-0">
+        <!-- left side image -->
+        <div class="flex justify-center place-items-center">
+            <img src="/image/login_img.svg" alt="login Image" class="w-[250px] h-[250px] lg:w-[450px] lg:h-[450px]">
+        </div>
+
+        <!-- right side login form -->
+        <div class="min-w-max flex flex-col place-content-start place-items-center lg:place-content-center">
+
+            <main class="w-max lg:w-8/12">
+                <!-- heading -->
+                <section class="flex flex-col">
+                    <span class="text-dark text-mobile-h1 font-Custom font-medium lg:text-destop-h1">Welcome Back</span>
+                    <span class="text-dark-light text-mobile-h4 font-Custom lg:text-destop-h4">Welcome back! Please enter your details.</span>
+                </section>
+
+                <!-- form section -->
+                <form method="post" action="/login" class="flex flex-col gap-2 mt-4 lg:gap-4">
+                    <label for="Email" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Email</label>
+                    <input type="email" name="email" class="font-Custom py-[10px] px-[8px] border-dark-light border-2 rounded-desktop-form hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter your email">
+                    <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Password</label>
+                    <input type="password" name="password" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="*****">
+
+                    <span class="font-Custom font-medium place-self-end text-mobile-p text-dark lg:text-destop-p">Forgot Password</span>
+
+                    <button type="submit" class="font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p">Sign in</button>
+                    <button type="button" class="py-[10px] rounded-desktop-form border-2 border-dark-light flex place-content-center gap-[20px]">
+                        <img src="/image/google_icon.svg" alt="google" class="w-[25px] h-[25px] lg:w-[30px] lg:h-[30px]">
+                        <span class="font-Custom text-dark text-mobile-p lg:text-destop-p">Sign With Google</span>
+                    </button>
+                </form>
+
+                <!-- register link -->
+                <p class="font-Custom mt-4 text-center text-mobile-p text-dark-light lg:text-mobile-p">Don’t have an account? 
+                    <a href="/register" class="text-primary">Sign up fo free!</a>
+                </p>
+            </main>
+        </div>
+    </main>
+</body>
+</html>

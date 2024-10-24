@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auction Win Confirmation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333333;
+      text-align: center;
+    }
+    .product-details, .summary, .footer {
+      margin-top: 20px;
+    }
+    .product-details td {
+      padding: 8px;
+      border: 1px solid #dddddd;
+    }
+    .summary {
+      font-size: 16px;
+    }
+    .summary .amount {
+      font-weight: bold;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: block;
+      text-align: center;
+    }
+    .navbar {
+      background-color: #333;
+      padding: 10px 0;
+      text-align: center;
+      border-radius: 12px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #aaaaaa;
+    }
+    @media only screen and (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 10px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="navbar">
+        <h1 style="color: #343EE5">Bidding</h1>
+    </div>
+    <h1>Congratulations, <%= userName %>!</h1>
+    <p>You've won the auction for <strong><%= auction.title %></strong>.</p>
+
+    <div class="product-details">
+      <h2>Product Details</h2>
+      <table width="100%">
+        <tr>
+          <td><strong>Product:</strong></td>
+          <td><%= auction.title %></td>
+        </tr>
+        <tr>
+          <td><strong>Winning Bid:</strong></td>
+          <td>₹<%= auction.current_bid %></td>
+        </tr>
+        <tr>
+          <td><strong>Auction Ended On:</strong></td>
+          <td><%= auction.end_time %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="summary">
+      <p class="amount">Total Payable Amount: ₹<%= auction.current_bid %></p>
+    </div>
+
+    <a href="" class="btn">Proceed to Payment</a>
+
+    <div class="footer">
+      <p>If you have any questions, please contact our support team.</p>
+      <p>&copy; 2024 Bidding Platform. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
