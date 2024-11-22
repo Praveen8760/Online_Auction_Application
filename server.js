@@ -38,31 +38,36 @@ const io=socketIo(server)
 
 // Database connection
 
-const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
-.then(()=>{
-    console.log("Database Conneted");
-})
-.catch((err)=>{
-    console.log("Database Error");
-})
+// const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
+// .then(()=>{
+//     console.log("Database Conneted");
+// })
+// .catch((err)=>{
+//     console.log("Database Error");
+// })
 
 
 
 // mongoDB Cluster
 
-// const mongoURI="mongodb+srv://praveen:test@cluster0.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const mongoURI="mongodb+srv://praveen:test@cluster0.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
-// const DB=mongoose.connect(mongoURI)
-// .then(()=>{
-//     console.log("DB");
-//     mongoose.connection.db.admin().ping();
-// })
-// .then(async() => {
-//     console.log("Pinged the database, connection is active");    
-// })
-// .catch((err)=>{
-//     console.log(err);
-// })
+const DB=mongoose.connect(mongoURI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+})
+.then(()=>{
+    console.log("DB");
+    mongoose.connection.db.admin().ping();
+})
+.then(async() => {
+    console.log("Pinged the database, connection is active");    
+})
+.catch((err)=>{
+    console.log(err);
+})
 
 
 app.use((req, res, next) => {
