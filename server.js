@@ -53,7 +53,6 @@ const io=socketIo(server)
 const mongoURI="mongodb+srv://praveen:test@cluster0.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 const DB=mongoose.connect(mongoURI,{
-    useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
