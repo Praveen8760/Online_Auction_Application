@@ -10,11 +10,13 @@
     <link rel="icon" href="/image/brand_icon.svg">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script> 
+
 </head>
 <body class="bg-white-base">
 
     <!-- navbar -->
-    <nav class="bg-white">
+    <nav class="bg-white sidebar">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/home" class="flex items-center space-x-9 rtl:space-x-reverse">
             <img src="image/brand_icon.svg" class="h-14 w-14 lg:w-[40px] lg:h-[40px]" alt="Flowbite Logo" />
@@ -48,10 +50,10 @@
     </nav>
 
     <div class="container mx-auto mt-10">
-        <h1 class="text-mobile-h2 font-semibold font-Custom mb-6 text-center lg:text-destop-h2">User Profile</h1>
+        <h1 class="text-mobile-h2 font-semibold font-Custom mb-6 text-center lg:text-destop-h2 sidebar">User Profile</h1>
         
         <!-- Profile Image Section -->
-        <div class="flex flex-col font-Custom items-center mb-8">
+        <div class="flex flex-col font-Custom items-center mb-8 sidebar">
             <img src="/image/userAvater.png" alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-gray-300 mb-2">
             <h2 class="text-mobile-h3 font-medium lg:text-destop-h3 capitalize"><%= user.fullname %></h2>
             <p class="text-gray-500 text-mobile-p lg:text-destop-h4"><%= user.email %></p>
@@ -59,66 +61,66 @@
 
         <form action="/profile" method="post" class="font-Custom grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- User Information Section -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-mobile-h2 font-semibold text-dark mb-4 lg:text-destop-h2">User Information</h2>
+            <div class="sidebar bg-white p-6 rounded-lg shadow-md">
+                <h2 class="sidebar text-mobile-h2 font-semibold text-dark mb-4 lg:text-destop-h2">User Information</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="fullname" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Full Name:</label>
-                        <input type="text" id="fullname" name="fullname" value="<%= user.fullname %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        <label for="fullname" class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" value="<%= user.fullname %>" required class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                     </div>
                     <div>
-                        <label for="email" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Email:</label>
-                        <input type="email" id="email" name="email" value="<%= user.email %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        <label for="email" class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Email:</label>
+                        <input type="email" id="email" name="email" value="<%= user.email %>" required class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                     <div>
-                        <label for="current_password" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Current Password:</label>
-                        <input type="password" id="current_password" name="current_password" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        <label for="current_password" class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Current Password:</label>
+                        <input type="password" id="current_password" name="current_password" required class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                     </div>
                     <div>
-                        <label for="new_password" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">New Password:</label>
-                        <input type="password" id="new_password" name="new_password"  class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        <label for="new_password" class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">New Password:</label>
+                        <input type="password" id="new_password" name="new_password"  class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                     </div>
                 </div>
                 <div class="mt-4">
-                    <label for="confirm_new_password" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Confirm New Password:</label>
-                    <input type="password" id="confirm_new_password" name="confirm_new_password" class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                    <label for="confirm_new_password" class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Confirm New Password:</label>
+                    <input type="password" id="confirm_new_password" name="confirm_new_password" class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                 </div>
             </div>
             
             <!-- Payment Method Section -->
-            <div class="bg-white p-6 rounded-lg shadow-md font-Custom">
-                <h2 class="text-mobile-h2 lg:text-destop-h2 font-semibold mb-5">Payment Method</h2>
+            <div class="sidebar bg-white p-6 rounded-lg shadow-md font-Custom">
+                <h2 class="sidebar text-mobile-h2 lg:text-destop-h2 font-semibold mb-5">Payment Method</h2>
                 <div class="grid grid-cols-1 gap-6">
                     <div>
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Card Number:</label>
-                        <input type="text" name="payment_method[card_number]" value="<%= user.payment_methods[0].card_number %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        <label class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Card Number:</label>
+                        <input type="text" name="payment_method[card_number]" value="<%= user.payment_methods[0].card_number %>" required class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Expiry Date:</label>
-                            <input type="text" name="payment_method[card_expiry]" value="<%= user.payment_methods[0].card_expiry %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                            <label class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-psidebar ">Expiry Date:</label>
+                            <input type="text" name="payment_method[card_expiry]" value="<%= user.payment_methods[0].card_expiry %>" required class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                         </div>
                         <div>
-                            <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">CVC:</label>
-                            <input type="password" name="payment_method[card_cvc]" value="<%= user.payment_methods[0].card_cvc %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                            <label class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">CVC:</label>
+                            <input type="password" name="payment_method[card_cvc]" value="<%= user.payment_methods[0].card_cvc %>" required class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                         </div>
                     </div>
                     <div>
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Cardholder Name:</label>
-                        <input type="text" name="payment_method[cardholder_name]" value="<%= user.fullname %>" required class="border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
+                        <label class="sidebar font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Cardholder Name:</label>
+                        <input type="text" name="payment_method[cardholder_name]" value="<%= user.fullname %>" required class="sidebar border border-gray-300 p-2 w-full rounded-desktop-form placeholder:font-Custom placeholder:text-gray-500">
                     </div>
                 </div>
             </div>
             
-            <div class="flex justify-center w-full mt-6 mb-5">
+            <div class="flex justify-center w-full mt-6 mb-5 sidebar">
                 <button type="submit" class="min-w-max px-[15px] font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p transition duration-200">Update Profile</button>
             </div>
         </form>
         
     </div>
 
-    
+    <script src="/javascript/userAni.js"></script>
 </body>
 </html>

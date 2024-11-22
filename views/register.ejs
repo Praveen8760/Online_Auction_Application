@@ -6,12 +6,15 @@
     <title>Register</title>
 
     <link rel="stylesheet" href="/css/output.css">
+    <link rel="icon" href="/image/brand_icon.svg">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script> 
 </head>
 <body>
     <main class="grid grid-cols-1 h-dvh mt-3 lg:grid-cols-2 lg:mt-0">
         <!-- left side image -->
         <div class="flex justify-center place-items-center">
-            <img src="/image/register_img.svg" alt="login Image" class="w-[250px] h-[250px] lg:w-[450px] lg:h-[450px]">
+            <img src="/image/register_img.svg" id="regImg" alt="login Image" class="w-[250px] h-[250px] lg:w-[450px] lg:h-[450px]">
         </div>
 
         <!-- right side login form -->
@@ -19,26 +22,26 @@
 
             <main class="w-max lg:w-8/12">
                 <!-- heading -->
-                <section class="flex flex-col">
+                <section class="flex flex-col form-class">
                     <span class="text-dark text-mobile-h2 font-Custom font-medium lg:text-destop-h2">Create New Account</span>
                 </section>
 
                 <!-- form section -->
                 <form method="post" action="/register" class="flex flex-col gap-2 mt-4 lg:gap-4">
                     
-                    <label for="name" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Full Name</label>
-                    <input type="text" name="fullname" class="font-Custom py-[10px] px-[8px] border-dark-light border-2 rounded-desktop-form hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter your Name">
+                    <label for="name" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p form-class">Full Name</label>
+                    <input type="text" name="fullname" class="form-class font-Custom py-[10px] px-[8px] border-dark-light border-2 rounded-desktop-form hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter your Name">
 
-                    <label for="Email" class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Email</label>
-                    <input type="email" name="email" class="font-Custom py-[10px] px-[8px] border-dark-light border-2 rounded-desktop-form hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter your email">
+                    <label for="Email" class="form-class font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Email</label>
+                    <input type="email" name="email" class="form-class font-Custom py-[10px] px-[8px] border-dark-light border-2 rounded-desktop-form hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter your email">
 
-                    <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Password</label>
-                    <input type="password" name="password" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="*****">
+                    <label class="form-class font-Custom font-normal text-mobile-p text-dark lg:text-destop-p">Password</label>
+                    <input type="password" name="password" class="form-class font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="*****">
 
-                    <span class="font-Custom font-medium place-self-end text-mobile-p text-dark lg:text-destop-p">Forgot Password</span>
+                    <span class="form-class font-Custom font-medium place-self-end text-mobile-p text-dark lg:text-destop-p">Forgot Password</span>
 
-                    <button type="submit" class="font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p">Sign up</button>
-                    <button type="button" class="py-[10px] rounded-desktop-form border-2 border-dark-light flex place-content-center gap-[20px]">
+                    <button type="submit" class="font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p form-class">Sign up</button>
+                    <button type="button" class="py-[10px] rounded-desktop-form border-2 border-dark-light flex place-content-center gap-[20px] form-class">
                         <img src="/image/google_icon.svg" alt="google" class="w-[25px] h-[25px] lg:w-[30px] lg:h-[30px]">
                         <span class="font-Custom text-dark text-mobile-p lg:text-destop-p">
                             <a href="/google/auth">Sign With Google</a>
@@ -47,13 +50,13 @@
                 </form>
 
                 <!-- register link -->
-                <p class="font-Custom mt-4 text-center text-mobile-p text-dark-light lg:text-mobile-p">have an account? 
+                <p class="font-Custom mt-4 text-center text-mobile-p text-dark-light lg:text-mobile-p form-class">have an account? 
                     <a href="/login" class="text-primary">Sign In</a>
                 </p>
             </main>
         </div>
     </main>
 
-
+    <script src="/javascript/registerAni.js"></script>
 </body>
 </html>
